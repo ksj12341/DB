@@ -32,6 +32,7 @@ FROM Orders;
 
 
 
+
 /*고객의 이름과 고객별 구매액 */
 SELECT name, sum(saleprice) 
 FROM Orders, Customer 
