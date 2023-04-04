@@ -1,4 +1,4 @@
-/*왼쪽외부조안*/
+/*왼쪽외부조인*/
 
 select name, saleprice
 from    Customer, LEFT OUTER JOIN Orders on Customer.custid=orders.custid;
