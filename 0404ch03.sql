@@ -1,21 +1,20 @@
 /*왼쪽외부조인*/
 
 select name, saleprice
-from    Customer, LEFT OUTER JOIN Orders on Customer.custid=orders.custid;
+from    Customer LEFT OUTER JOIN Orders on Customer.custid=orders.custid;
 
 
 
 /* 왼쪽 외부 조인(+) */
 
-select name, saleprice
-from    Customer, orders
-where customer.custid=orders.custid(+)
-
+SELECT customer.name, saleprice
+FROM customer, orders
+WHERE customer.custid=orders.custid(+);
 
 /*가장 비싼 도서의 가격 표시 */
 
 select max(price)
-from book
+from book;
 
 /*가장 비싼 도서의 이름 */
 
@@ -41,7 +40,7 @@ from orders;
 
 select name
 from customer
-where custid in(1,2,3,4)
+where custid in(1,2,3,4);
 
 
 /*도서를 주문한 적 있는 고객의 이름 */
