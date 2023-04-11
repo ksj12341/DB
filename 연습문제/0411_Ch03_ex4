@@ -1,0 +1,41 @@
+/*새로운 도서 스포츠 세계\ ‘대한미디어 . 10000 이 마당서 에 입고되었다. 삽입이 안 될 경 
+우 필요한 대이터가 더 있는지 0)-보시오.*/
+INSERT INTO Book VALUES(11, '스포츠세계', '대한미디어', 10000);
+SELECT * from book;
+
+/* 삼성당에서 출판한 도서를 삭제하시오.*/
+DELETE FROM Book WHERE publisher='삼성당';
+
+/* 이상미디어에서 출판한 서를 삭제하시오. 삭제가 안 되면 원인울 생각해 보시오.*/
+DELETE FROM Book WHERE publisher='이상미디어';
+
+/*외래키 제약조건에 위배 */
+
+
+
+/*4) 출판사 대한미디어 · 대한출판사·로 이름올 바꾸시오. */
+update book
+set publisher=(select publisher from book where publisher='대한출판사')
+where publisher='대한미디어';
+
+/*(5) 테이블 생성) 출판사에 대한 정보를 저장하는 테이 블 Bookcompany(name. address, begin
+를 생성하고자 한다. name 은 기본키이며 VARCHAR (20). address는 VARCHAR (20). 
+begin 은 DATE 타입으로 선언하여 생성하시오. */
+
+create table bookcompany (
+name varchar2(20),
+address varchar2(20),
+begin DATE);
+
+
+/*6) 테이블 수정 ) Bookcompany 테이블에 인터넷 주소를 저장하는 weaddress 속성을 
+VARCHAR 30 으로 추가하시오.*/
+
+
+alter table bookcompany add weaddress varchar2(30);
+
+/*(7) Bookcompany 테이블에 임의의 투플 한빛아카데미 . address= 서울시 마포구. 
+begin=1993?01- 01. webaddress=http ://hanbit.co. kr을 삽입하시오.*/
+
+insert into bookcompany(name, address, begin, weaddress)
+values('한빛아카데미', '서울시 마포구', '1993-01-01', 'http://hanbit.co.kr');
