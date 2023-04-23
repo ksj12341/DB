@@ -1,0 +1,52 @@
+/*모든 사원의 이름을 보이시오 . */
+SELECT name FROM employee;
+
+/*여자 사원의 이름을 보이시오. */
+
+select name
+from employee
+where sex = '여';
+
+/* 팀장 (manager)의 이름을 보이시오. */
+
+select manager from department;
+
+/*'IT'부서에서 일하는 사원의 이름과 주소를 보이시오. */
+
+select name, address
+from employee
+JOIN department ON employee.deptno = department.depno
+WHERE department.deptname = 'IT';
+
+/* '홍길동' 팀장 부서에서 일하는 사원의 수를 보이시오. */
+
+SELECT COUNT(*) AS employee_count
+FROM department d
+JOIN employee e ON d.depno = e.deptno
+WHERE d.manager = '홍길동' ;
+
+/* 사원들이 일한 시간 수를 부서별, 사원 이름별 오름차순으로 보이시오. */
+SELECT d.deptname, e.name, SUM(w.hoursworked) as total_hours
+FROM employee e 
+INNER JOIN works w ON e.empno = w.empno 
+INNER JOIN department d ON e.deptno = d.depno 
+GROUP BY d.deptname, e.name
+ORDER BY d.deptname, e.name;
+
+
+/*2명 이상의 사원이 참여한 프로젝트의 번호, 이름 , 사원의 수를 보이시오. */
+SELECT p.projno, p.projname, COUNT(w.empno) as num_of_employees
+FROM project p JOIN works w ON p.projno = w.projno
+GROUP BY p.projno, p.projname
+HAVING COUNT(w.empno) >= 2;
+
+/* 3명 이상의 사원이 있는 부서의 사원 이름을 보이시오. */
+SELECT DISTINCT e.name
+FROM employee e
+INNER JOIN (
+  SELECT deptno, COUNT(*) as num_employees
+  FROM employee
+  GROUP BY deptno
+  HAVING COUNT(*) >= 3
+) d
+ON e.deptno = d.deptno;
