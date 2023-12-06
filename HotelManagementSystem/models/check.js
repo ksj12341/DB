@@ -1,5 +1,12 @@
 // check.js
-//insert into reservation values (12,12,'102,1980-12-17,null);
+//INSERT INTO Reservation (user_id, room_number, check_in_date, check_out_date)
+//VALUES
+ // (1, 101, '2023-12-10', NULL),
+  //(2, 102, '2023-12-11', NULL),
+ // (3, 103, '2023-12-12', NULL),
+ // (4, 104, '2023-12-13', NULL),
+ // (5, 105, '2023-12-14', NULL);
+
 
 
 const mysql = require("mysql2/promise");
